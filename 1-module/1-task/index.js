@@ -1,19 +1,15 @@
 function factorial(n) {
-
   let result = 1;
-  
-  for (let i=1; i<=n; i++){
 
-    if (n==1 || n==0){
-      break;
-    }
-
-    result *=i;    
-
+  if (n==1 || n==0){
+    return result;
   }
-
-  alert (result);  
-
+  else {   
+    for (let i=1; i<=n; i++){
+      result *=i;  
+    }
+  }
+  return result;  
 }
 
 factorial(0); 
