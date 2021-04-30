@@ -1,5 +1,3 @@
-let salaries = {}
-
 function sumSalary(salaries) {
   let sum = 0;
   
@@ -9,7 +7,5 @@ function sumSalary(salaries) {
     }
   return sum;   
 }
-
-sumSalary(salaries);
 
 
