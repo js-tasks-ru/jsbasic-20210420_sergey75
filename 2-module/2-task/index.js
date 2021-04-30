@@ -1,5 +1,5 @@
 function isEmpty(obj) {
-  for (prop in obj){    
+  for (const prop in obj){    
     return false;      
 }
 return true;
