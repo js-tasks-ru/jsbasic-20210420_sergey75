@@ -9,6 +9,6 @@ function makeFriendsList(friends) {
 
   ul.innerHTML = liArray;
 
-  document.body.append(ul);
+  return ul;
 
 }
