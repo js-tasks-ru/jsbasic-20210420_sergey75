@@ -11,8 +11,8 @@ function highlight(table) {
     }
     else row.classList.add('female');
 
-    if(age < 18) {
-      row.setAttribute('style', 'text-decoration: line-through');  
+    if(age < 18) { 
+      row.style.textDecoration = "line-through";
     }
 
     switch (dataValue) {
