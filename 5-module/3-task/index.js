@@ -3,32 +3,40 @@ function initCarousel() {
   let carouselArrowLeft = document.querySelector('.carousel__arrow_left');
   let carouselWrapper = document.body.querySelector('.carousel__inner');
   let innerWidth = carouselWrapper.offsetWidth;  
-  let position = 0;
-  let count = 4;
+  let position = 1;
 
-  count == 4 ? carouselArrowLeft.style.display = 'none' : '';   
+  if (position == 1) {
+    carouselArrowLeft.style.display = 'none' ;
+  }
   
   carouselArrowRight.addEventListener('click', () => {  
 
-      count > 2 ? carouselArrowRight.style.display = '' : carouselArrowRight.style.display = 'none'; 
+      if (position > 2) {
+        carouselArrowRight.style.display = 'none';
+      } else {
+        carouselArrowRight.style.display = '';
+      }
       
-      carouselArrowLeft.style.display = ''; 
-      
-      position += innerWidth;
-      carouselWrapper.style.transform = `translateX(-${position + 'px'})`; 
-      count = count-1;
+      carouselArrowLeft.style.display = '';       
+
+      carouselWrapper.style.transform = `translateX(-${position*innerWidth + 'px'})`; 
+      position = position + 1;
 
   });
 
   carouselArrowLeft.addEventListener('click', () => { 
 
-    count == 3 ? carouselArrowLeft.style.display = 'none' : ''; 
+    if (position == 2) {
+      carouselArrowLeft.style.display = 'none'; 
+    }
 
-    count == 3 ? carouselArrowRight.style.display = '' : '';
-    
-    carouselWrapper.style.transform = `translateX(${-position + innerWidth*count + 'px'})`;
-    // position -= innerWidth;
-    count = count+1;
+    if (position == 4) {
+      carouselArrowRight.style.display = '';  
+    }  
+  
+    carouselWrapper.style.transform = `translateX(${(-position + 1)*innerWidth + innerWidth + 'px'})`;
+    position = position - 1;
+  
   });
 
 }
