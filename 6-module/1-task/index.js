@@ -12,20 +12,59 @@
  *      }
  *
  */
-export default class UserTable {
+
+ export default class UserTable {
+
   constructor(rows) {
-    let elem = document.querySelector('tbody'); 
+    this.elem = document.createElement('table');
 
-    for (let i = 0; i < rows.length; i++){    
-      elem.insertAdjacentHTML('beforeend', `<tr><td>${rows[i].name}</td><td>${rows[i].age}</td><td>${rows[i].salary}</td><td>${rows[i].city}</td><td><button>X</button></td></tr>`);          
-    }
-    let button = elem.querySelectorAll('button');  
-    
-    button.forEach((value) => {
-      value.addEventListener('click', () => {
-          value.parentNode.parentNode.remove();
-        })
-    })
+    this.elem.innerHTML = `
+      <thead>
+          <tr>
+            <td>Имя</td>
+            <td>Возраст</td>
+            <td>Зарплата</td>
+            <td>Город</td>
+            <td></td>
+          </tr>
+      </thead>
+    `;
 
+    let tbody = this.elem.querySelector('tbody');
+
+    let tableInner = rows.map(row => {
+      let cellsWithData = Object.values(row) // для каждого значения из объекта row
+        .map(value => `<td>${value}</td>`) // обернуть его в <td>
+        .join(''); // полученный массив <td>...</td> объединить в одну строку
+
+      return `
+          <tr>
+            ${cellsWithData}
+            <td><button>X</button></td>
+          </tr>
+        `; // возвращаем верстку одной строки
+    }).join('');
+
+    this.elem.innerHTML += `
+      <tbody>
+        ${tableInner}
+      <tbody>
+    `; // оборачиваем полученные строчки в tbody
+
+    this.elem.addEventListener('click', (event) => this.onClick(event));
   }
+
+  onClick(event) {
+    if (event.target.tagName != 'BUTTON') {
+      return;
+    }
+
+    let tr = event.target.closest('tr');
+
+    tr.remove();
+  }
+
+
+
+
 }
