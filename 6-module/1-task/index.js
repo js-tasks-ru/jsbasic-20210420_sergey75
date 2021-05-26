@@ -9,11 +9,14 @@
      *          age: 25,
      *          salary: '1000',
      *          city: 'Petrozavodsk'
-     *      },
+     *      }
  *
  */
-export default class UserTable {
+
+ export default class UserTable {
+
   constructor(rows) {
+
     this.elem = document.createElement('table');
 
     this.elem.innerHTML = `
